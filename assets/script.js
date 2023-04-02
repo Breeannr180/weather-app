@@ -17,7 +17,7 @@ $('#city-search').submit(function(event) {
     // display current weather
     const currentWeather = response.list[0];
     const cityName = response.city.name;
-    const temp = Math.round(currentWeather.main.temp - 273.15);
+    const temp = Math.round(currentWeather.main.temp);
     const humidity = currentWeather.main.humidity;
     const windSpeed = currentWeather.wind.speed;
     const icon = currentWeather.weather[0].icon;
@@ -35,14 +35,14 @@ $('#city-search').submit(function(event) {
     for (let i = 1; i < response.list.length; i += 8) {
       const forecast = response.list[i];
       const forecastDate = moment(forecast.dt_txt).format('MMM D');
-      const forecastTemp = Math.round(forecast.main.temp - 273.15);
+      const forecastTemp = Math.round(forecast.main.temp);
       const forecastHumidity = forecast.main.humidity;
       const forecastIcon = forecast.weather[0].icon;
       $('#five-day').append(`
         <div class="five-day-forecast">
           <h3>${forecastDate}</h3>
           <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="forecast weather icon" />
-          <p>Temperature: ${forecastTemp}°C</p>
+          <p>Temperature: ${forecastTemp}°F</p>
           <p>Humidity: ${forecastHumidity}%</p>
         </div>
       `);
