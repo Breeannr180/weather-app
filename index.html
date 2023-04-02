@@ -11,52 +11,34 @@
 <body>
 	<main>
 		<header class="container-fluid text-center text-white bg-dark p-2">
-		<h1>Weather App</h1>
+		<h1>Weather Forecast</h1>
 		</header>
 			<div class="container-fluid">
 			<div class="row">
 				<div class=" col-lg-3 bg-light">
 					<h2 class="mt-1">Search for City</h2>
 					<div class=" input-group mb-3"> 
-						<label for="city">City:</label>
-						<input type="text" id="city" name="city" placeholder="Enter city name">
-						<div class="input-group-append"></div>
-					    <button type="submit" id="searchBtn">Search</button>
+							<form id="city-search">
+								<!-- <input type="text" id="city" name="city" placeholder="Enter city name"> -->
+								<input name='city' type="text" placeholder="Austin" id='city' autofocus='true'
+									class='city-input' />		
+					    		<button type="submit" id="search-Btn" class="btn">Search</button>
+							</form>
 						<i class="fas fa-search"></i>
 				</div>
-			<div class="btn btn-sm btn-primary mb-2" type="button" id=" clear-history">Clear History</button>	
 		</div>
-		<!-- </div> -->
-			<!-- <div class="btn btn-sm btn-primary mb-2" type="button" id=" clear-history">Clear History</button>	 -->
-		<form id="search-history">
-			<input type="text" readonly="true" class="form-control d-block bg-white" value="">
-		</form>
-		<div class="col-lg-9">
-                <div class="row mr-0">
-                    <div class="col-lg-11 card m-3 d-none"id="weatherResults"></div>
-			
-						<h3 id="city-name" class="city-name align-middle"></h3>
-							<img id="current-pic" alt="">
-							<p id="temperature"></p>
-							<p id="humidity"></p>
-							<p id="wind-speed"></p>
-							<p id="UV-index"></p>
-						</div>
-					</div>
-				</div>
+		<div id="search-history"></div>
+	</div>
+		<div class="col2">
+			<div id='five-day' class='row spacebetween'></div>
 		</div>
-		<div class="row d-none" id="fiveday-header">
-			<div class="col-12">
-				<h3>5-Day Forecast</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
-		</div>
-	<script src="./assets/scripts.js"></script>
+	</div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="./assets/script.js"></script>
+
 </body>
 </html>
