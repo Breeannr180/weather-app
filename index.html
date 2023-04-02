@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" type="style/css" href="assets/style.css">
+    <title>Weather App</title>
+</head>
+<body>
+	<main>
+		<header class="container-fluid text-center text-white bg-dark p-2">
+		<h1>Weather App</h1>
+		</header>
+			<div class="container-fluid">
+			<div class="row">
+				<div class=" col-lg-3 bg-light">
+					<h2 class="mt-1">Search for City</h2>
+					<div class=" input-group mb-3"> 
+						<label for="city">City:</label>
+						<input type="text" id="city" name="city" placeholder="Enter city name">
+						<div class="input-group-append"></div>
+					    <button type="submit" id="searchBtn">Search</button>
+						<i class="fas fa-search"></i>
+				</div>
+			<div class="btn btn-sm btn-primary mb-2" type="button" id=" clear-history">Clear History</button>	
+		</div>
+		<!-- </div> -->
+			<!-- <div class="btn btn-sm btn-primary mb-2" type="button" id=" clear-history">Clear History</button>	 -->
+		<form id="search-history">
+			<input type="text" readonly="true" class="form-control d-block bg-white" value="">
+		</form>
+		<div class="col-lg-9">
+                <div class="row mr-0">
+                    <div class="col-lg-11 card m-3 d-none"id="weatherResults"></div>
+			
+						<h3 id="city-name" class="city-name align-middle"></h3>
+							<img id="current-pic" alt="">
+							<p id="temperature"></p>
+							<p id="humidity"></p>
+							<p id="wind-speed"></p>
+							<p id="UV-index"></p>
+						</div>
+					</div>
+				</div>
+		</div>
+		<div class="row d-none" id="fiveday-header">
+			<div class="col-12">
+				<h3>5-Day Forecast</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+			<div class="col-md-2 forecast bg-primary text-white m-2 rounded"></div>
+		</div>
+	<script src="./assets/scripts.js"></script>
+</body>
+</html>
