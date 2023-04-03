@@ -1,6 +1,6 @@
 var  API_KEY = '9ded74694686df4fc6c160d32cf07e57'; // personal API Key
 
-// function to handle form submit event
+// function for form submit event
 $('#city-search').submit(function(event) {
   event.preventDefault();
   const city = $('#city').val().trim();
