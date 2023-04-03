@@ -44,21 +44,21 @@ for (let i = 0; i < response.list.length && i < 5; i++) {
     $('#five-day').append(card);
    
 
-      // Get search history from local storage or initialize it as an empty array
-      let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+        // Get search history from local storage or initialize it as an empty array
+        let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-      // Add current city to search history if it's not already in there
-      if (!searchHistory.includes(cityName)) {
-      searchHistory.unshift(cityName);
-      localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-      }
+        // Add current city to search history if it's not already in there
+        if (!searchHistory.includes(cityName)) {
+        searchHistory.unshift(cityName);
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+      
 
       // Display up to 5 most recent searches in search history section
         const searchHistoryBtns = searchHistory.slice(0, 5).map(city => `
         <button class="search-history-btn btn btn-secondary">${city}</button>
         `).join('');
        $('#search-history').html(searchHistoryBtns);
-
+      }
       // Function for search history button click event
         $(document).on('click', '.search-history-btn', function() {
         const city = $(this).text();
