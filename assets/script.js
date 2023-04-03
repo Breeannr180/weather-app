@@ -42,32 +42,30 @@ for (let i = 0; i < response.list.length && i < 5; i++) {
       </div>
     `;
     $('#five-day').append(card);
-  }
-});
+   
 
-    // save search history to local storage
-    let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    if (!searchHistory.includes(cityName)) {
-    searchHistory.unshift(cityName);
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-    }
+      // Get search history from local storage or initialize it as an empty array
+      let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-    // display search history
-    for (let i = 0; i < searchHistory.length && i < 5; i++) {
-      const city = searchHistory[i];
-      $('#search-history').append(`
+      // Add current city to search history if it's not already in there
+      if (!searchHistory.includes(cityName)) {
+      searchHistory.unshift(cityName);
+      localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+      }
+
+      // Display up to 5 most recent searches in search history section
+        const searchHistoryBtns = searchHistory.slice(0, 5).map(city => `
         <button class="search-history-btn btn btn-secondary">${city}</button>
-      `);
+        `).join('');
+       $('#search-history').html(searchHistoryBtns);
+
+      // Function for search history button click event
+        $(document).on('click', '.search-history-btn', function() {
+        const city = $(this).text();
+        $('#city').val(city);
+        $('#city-search').submit();
+      })
     }
-  }).catch(function(error) {
-    console.log(error);
-    alert('Failed to fetch weather data. Please try again later.');
-  });
+  })
+})
 
-
-// function for search history button click event
-$(document).on('click', '.search-history-btn', function() {
-  const city = $(this).text();
-  $('#city').val(city);
-  $('#city-search').submit();
-});
