@@ -21,38 +21,35 @@ $('#city-search').submit(function(event) {
     const humidity = currentWeather.main.humidity;
     const windSpeed = currentWeather.wind.speed;
     const icon = currentWeather.weather[0].icon;
-    $('#five-day').append(`
-      <div class="current-weather">
-        <h2>${cityName}</h2>
-        <img src="http://openweathermap.org/img/w/${icon}.png" alt="current weather icon" />
-        <p>Temperature: ${temp}°F</p>
-        <p>Humidity: ${humidity}%</p>
-        <p>Wind Speed: ${windSpeed} m/s</p>
-      </div>
-    `);
 
-    // display five-day forecast
-    for (let i = 1; i < response.list.length; i += 8) {
-      const forecast = response.list[i];
-      const forecastDate = moment(forecast.dt_txt).format('MMM D');
-      const forecastTemp = Math.round(forecast.main.temp);
-      const forecastHumidity = forecast.main.humidity;
-      const forecastIcon = forecast.weather[0].icon;
-      $('#five-day').append(`
-        <div class="five-day-forecast">
-          <h3>${forecastDate}</h3>
-          <img src="http://openweathermap.org/img/w/${forecastIcon}.png" alt="forecast weather icon" />
-          <p>Temperature: ${forecastTemp}°F</p>
-          <p>Humidity: ${forecastHumidity}%</p>
+// display weather cards for the next 5 days
+for (let i = 0; i < response.list.length && i < 5; i++) {
+    const weather = response.list[i];
+    const date = moment(weather.dt_txt).format('MMMM Do YYYY');
+    const temp = Math.round(weather.main.temp);
+    const humidity = weather.main.humidity;
+    const windSpeed = weather.wind.speed;
+    const icon = weather.weather[0].icon;
+    const card = `
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">${date}</h5>
+          <img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
+          <p class="card-text">Temperature: ${temp}°F</p>
+          <p class="card-text">Humidity: ${humidity}%</p>
+          <p class="card-text">Wind Speed: ${windSpeed} MPH</p>
         </div>
-      `);
-    }
+      </div>
+    `;
+    $('#five-day').append(card);
+  }
+});
 
     // save search history to local storage
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
     if (!searchHistory.includes(cityName)) {
-      searchHistory.unshift(cityName);
-      localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    searchHistory.unshift(cityName);
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
     }
 
     // display search history
@@ -66,9 +63,9 @@ $('#city-search').submit(function(event) {
     console.log(error);
     alert('Failed to fetch weather data. Please try again later.');
   });
-});
 
-// function to handle search history button click event
+
+// function for search history button click event
 $(document).on('click', '.search-history-btn', function() {
   const city = $(this).text();
   $('#city').val(city);
