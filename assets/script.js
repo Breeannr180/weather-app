@@ -24,10 +24,10 @@ $(document).ready(function() {
       const windSpeed = currentWeather.wind.speed;
       const icon = currentWeather.weather[0].icon;
       const currentCard = `
-        <div class="card text-center">
+        <div class="card text-center bg-info">
           <div class="card-body">
             <h5 class="card-title">Current Weather</h5>
-            <img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
+            <i class="fas fa-${icon} weather-icon"></i>
             <p class="card-text">Temperature: ${temp}°F</p>
             <p class="card-text">Humidity: ${humidity}%</p>
             <p class="card-text">Wind Speed: ${windSpeed} MPH</p>
